@@ -1,5 +1,7 @@
 const { google } = require("googleapis");
 
+console.log("Credenciais existem?", process.env.GDRIVE_CREDENTIALS);
+
 const auth = new google.auth.GoogleAuth({
   credentials: JSON.parse(process.env.GDRIVE_CREDENTIALS),
   scopes: ["https://www.googleapis.com/auth/spreadsheets"]
