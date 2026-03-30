@@ -19,7 +19,7 @@ jobs:
           node-version: 18
 
       - name: Instalar dependências
-        run: npm install googleapis
+        run: npm install
 
       - name: Rodar script
         run: node log.js

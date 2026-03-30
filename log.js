@@ -1,17 +1,23 @@
+require("dotenv").config();
+
 const { google } = require("googleapis");
+const fs = require("fs");
+
+const credentials = process.env.GDRIVE_CREDENTIALS
+  ? JSON.parse(process.env.GDRIVE_CREDENTIALS)
+  : JSON.parse(fs.readFileSync("credentials.json"));
 
 const auth = new google.auth.GoogleAuth({
-  credentials: JSON.parse(process.env.GDRIVE_CREDENTIALS),
+  credentials,
   scopes: ["https://www.googleapis.com/auth/spreadsheets"]
 });
 
 async function run() {
-
   const client = await auth.getClient();
 
   const sheets = google.sheets({ version: "v4", auth: client });
 
-  const agora = new Date().toISOString();
+  const agora = "local " + new Date().toISOString();
 
   await sheets.spreadsheets.values.append({
     spreadsheetId: process.env.SHEET_ID,
