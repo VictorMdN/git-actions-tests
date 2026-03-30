@@ -17,7 +17,7 @@ async function run() {
 
   const sheets = google.sheets({ version: "v4", auth: client });
 
-  const agora = "local " + new Date().toISOString();
+  const agora = new Date().toISOString();
 
   await sheets.spreadsheets.values.append({
     spreadsheetId: process.env.SHEET_ID,
